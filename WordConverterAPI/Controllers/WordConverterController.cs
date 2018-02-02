@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Collections.Generic;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using WordConverterAPI.Models;
 using WordConverterLibrary;
 
 namespace WordConverterAPI.Controllers
 {
+    [EnableCors("http://localhost:59645", "*", "*")]
     public class WordConverterController : ApiController
     {
-        private readonly IWordConverterProvider _provider = new SimpleWordConverterProvider();
+        private readonly IWordConverterProvider _provider;
 
         public WordConverterController(IWordConverterProvider provider)
         {
@@ -19,35 +17,15 @@ namespace WordConverterAPI.Controllers
         }
 
         // GET: api/WordConverter
-        public IEnumerable<WordModel> Get()
+        public IHttpActionResult Get(decimal number)
         {
-            return new List<WordModel>(){ new WordModel() { Number = 0, Word = this._provider.Convert(0)}};
-        }
+            // sanitize input
+            if (number < 0)
+            {
+                return BadRequest("Invalid number");
+            }
 
-        // GET: api/WordConverter/5
-        //public WordModel Get(int id)
-        //{
-        //    return new WordModel() { Number = id, Word = this._provider.Convert(id) };
-        //}
-
-        public WordModel Get(decimal id)
-        {
-            return new WordModel() { Number = id, Word = this._provider.Convert(id) };
-        }
-
-        // POST: api/WordConverter
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT: api/WordConverter/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE: api/WordConverter/5
-        public void Delete(int id)
-        {
+            return Ok(new WordModel() { Number = number, Word = this._provider.Convert(number) });
         }
     }
 }

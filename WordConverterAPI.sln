@@ -11,6 +11,28 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordConverterLibrary", "Wor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel", "Kernel\Kernel.csproj", "{83B0CB19-1A17-413F-9047-2D36DFFC62C3}"
 EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WordConvertClient", "WordConvertClient\", "{93FB6807-8A89-4995-AC54-5A315EE3CC68}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.2"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_59645"
+		Debug.AspNetCompiler.PhysicalPath = "WordConvertClient\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59645\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_59645"
+		Release.AspNetCompiler.PhysicalPath = "WordConvertClient\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_59645\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "59645"
+		SlnRelativePath = "WordConvertClient\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +55,10 @@ Global
 		{83B0CB19-1A17-413F-9047-2D36DFFC62C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{83B0CB19-1A17-413F-9047-2D36DFFC62C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{83B0CB19-1A17-413F-9047-2D36DFFC62C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93FB6807-8A89-4995-AC54-5A315EE3CC68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93FB6807-8A89-4995-AC54-5A315EE3CC68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93FB6807-8A89-4995-AC54-5A315EE3CC68}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{93FB6807-8A89-4995-AC54-5A315EE3CC68}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
