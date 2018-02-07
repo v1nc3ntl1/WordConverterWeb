@@ -11,6 +11,6 @@
             ]);
 
     function wordConverterResource($resource, appSettings) {
-        return $resource(appSettings.serverPath + "/api/WordConverter/:ID");
+        return $resource(appSettings.serverPath + "/api/Converter/:number");
     }
 }());
