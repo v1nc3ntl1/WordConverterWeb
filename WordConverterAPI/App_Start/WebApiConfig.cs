@@ -13,7 +13,7 @@ namespace WordConverterAPI
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
-            WebApiHelper.Register<IWordConverterProvider, WordConverterProvider>(config);
+            WebApiHelper.Register<IWordConverterProvider, SimpleWordConverterProvider>(config);
 
             // Web API routes
             config.MapHttpAttributeRoutes();
@@ -21,8 +21,8 @@ namespace WordConverterAPI
             config.EnableCors();
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{action}/{id}",
+                defaults: new { id = RouteParameter.Optional, Action = "Get" }
             );
         }
     }

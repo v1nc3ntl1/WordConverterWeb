@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Web.Http;
+﻿using System.Web.Http;
 using System.Web.Http.Cors;
 using WordConverterAPI.Models;
 using WordConverterLibrary;
@@ -17,6 +16,7 @@ namespace WordConverterAPI.Controllers
         }
 
         // GET: api/WordConverter
+        [Route("api/Converter/{number}")]
         public IHttpActionResult Get(decimal number)
         {
             // sanitize input
