@@ -1,14 +1,7 @@
 ﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using NSubstitute;
 using NUnit.Framework;
 using Unity;
-using Unity.Extension;
-using Unity.Lifetime;
-using Unity.Registration;
-using Unity.Resolution;
 
 namespace Kernel.Tests
 {
@@ -35,6 +28,49 @@ namespace Kernel.Tests
 
             // Assert
             Assert.AreEqual(mockClass, actual);
+        }
+
+        [Test]
+        public void GetServicesTests()
+        {
+            // Arrange
+            var mockClass = new MockClass();
+            var container = new UnityContainer();
+            container.RegisterType<IMock, MockClass>();
+            var resolver = new UnityResolver(container);
+
+            // Act
+            var actual = resolver.GetServices(typeof(IMock));
+
+            // Assert
+            Assert.NotNull(actual);
+        }
+
+        [Test]
+        public void BeginScopeTests()
+        {
+            // Arrange
+            var called = false;
+            _container.When(x => x.CreateChildContainer()).Do(x => called = true);
+
+            // Act
+            var actual = _resolver.BeginScope();
+
+            Assert.IsTrue(called);
+            Assert.IsNotNull(actual);
+        }
+
+        [Test]
+        public void DisposeTests()
+        {
+            // Arrange
+            var called = false;
+            _container.When(x => x.Dispose()).Do(x => called = true);
+
+            // Act
+            _resolver.Dispose();
+
+            Assert.IsTrue(called);
         }
 
         public interface IMock
