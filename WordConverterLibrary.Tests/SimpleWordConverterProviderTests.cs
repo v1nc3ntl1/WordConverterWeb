@@ -29,6 +29,28 @@ namespace WordConverterLibrary.Tests
             Assert.AreEqual(expected, actual);
         }
 
+        [Test]
+        public void ConvertTests_WithPrecision_WillReturnWithPrecisionWord()
+        {
+            decimal[] input = { 75644.85m , 75644.8546m };
+            string[] expected = { "seventy-five thousand, six hundred forty-four and eighty-five" , "seventy-five thousand, six hundred forty-four and eighty-five" };
+            var actual = new string[2];
+
+            // Arrange
+            _provider = new SimpleWordConverterProvider();
+
+            // Act
+            for (var counter = 0; counter < input.Length; counter++)
+            {
+                actual[counter] = _provider.Convert(input[counter]);
+            }
+            
+
+            // Assert
+            Assert.AreEqual(expected[0], actual[0]);
+            Assert.AreEqual(expected[1], actual[1]);
+        }
+
         [TestCase(1, "ONE DOLLARS")]
         [TestCase(43, "FORTY-THREE DOLLARS")]
         [TestCase(123, "ONE HUNDRED AND TWENTY-THREE DOLLARS")]
@@ -49,6 +71,28 @@ namespace WordConverterLibrary.Tests
 
             // Assert
             Assert.AreEqual(expected, actual);
+        }
+
+        [Test]
+        public void ConvertTests_WithPrecisionAndIncludeDollar_WillReturnWithPrecisionWordAndDollar()
+        {
+            decimal[] input = { 75644.85m, 75644.8546m };
+            string[] expected = { "SEVENTY-FIVE THOUSAND, SIX HUNDRED AND FORTY-FOUR DOLLARS AND EIGHTY-FIVE CENTS", "SEVENTY-FIVE THOUSAND, SIX HUNDRED AND FORTY-FOUR DOLLARS AND EIGHTY-FIVE CENTS" };
+            var actual = new string[2];
+
+            // Arrange
+            _provider = new SimpleWordConverterProvider(true, true, true);
+
+            // Act
+            for (var counter = 0; counter < input.Length; counter++)
+            {
+                actual[counter] = _provider.Convert(input[counter]);
+            }
+
+
+            // Assert
+            Assert.AreEqual(expected[0], actual[0]);
+            Assert.AreEqual(expected[1], actual[1]);
         }
 
         [Test]

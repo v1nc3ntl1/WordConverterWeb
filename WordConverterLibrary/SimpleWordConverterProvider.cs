@@ -2,6 +2,9 @@
 
 namespace WordConverterLibrary
 {
+    /// <summary>
+    /// An implementation of number converter which convert a number to an English words. For example, given 110 the output would be one hundred and ten dollar.
+    /// </summary>
     public class SimpleWordConverterProvider : IWordConverterProvider
     {
         private readonly string[] _numberWords = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen" };
@@ -11,8 +14,17 @@ namespace WordConverterLibrary
         private readonly bool _includeAnd;
         private readonly bool _upperCase;
 
+        /// <summary>
+        /// Default Constructor
+        /// </summary>
         public SimpleWordConverterProvider() { }
             
+        /// <summary>
+        /// Parameter constructor
+        /// </summary>
+        /// <param name="includeCurrency">flag to determine if to include Currency at the back of the word. For example, one hundred dollar</param>
+        /// <param name="includeAnd">flag to determine if to include And word on the 2nd digit. For example, if it is true, 110 would be return as one hundred "and" ten</param>
+        /// <param name="upperCase">flag to determine if to return the word in upper case</param>
         public SimpleWordConverterProvider(bool includeCurrency, bool includeAnd, bool upperCase)
         {
             _includeCurrency = includeCurrency;
@@ -20,6 +32,11 @@ namespace WordConverterLibrary
             _upperCase = upperCase;
         }
 
+        /// <summary>
+        /// Convert a number to a words number. 
+        /// </summary>
+        /// <param name="input">a non negative value decimal number towards 2 precision</param>
+        /// <returns>a words number. For example, one hundred and ten dollar</returns>
         public string Convert(decimal input)
         {
             if (input < 0)
@@ -28,7 +45,7 @@ namespace WordConverterLibrary
             }
 
             var currency = _includeCurrency ? " dollars" : "";
-            var number = int.Parse(input.ToString("F0"));
+            var number = int.Parse(Math.Floor(input).ToString("F0"));
             var rawFraction = input - number;
 
             if (rawFraction == 0)
