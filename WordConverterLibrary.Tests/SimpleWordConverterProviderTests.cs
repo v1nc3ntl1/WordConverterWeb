@@ -95,6 +95,22 @@ namespace WordConverterLibrary.Tests
             Assert.AreEqual(expected[1], actual[1]);
         }
 
+        public void ConvertTests_WithLargeNumberPrecisionAndIncludeDollar_WillReturnWithPrecisionWordAndDollar()
+        {
+            var input = 999999999999999999.99m;
+            var expected =
+                "NINE HUNDRED AND NINETY-NINE QUADRILLION, NINE HUNDRED AND NINETY-NINE TRILLION, NINE HUNDRED AND NINETY-NINE BILLION, " +
+                "NINE HUNDRED AND NINETY-NINE MILLION, NINE HUNDRED AND NINETY-NINE THOUSAND, NINE HUNDRED AND NINETY-NINE DOLLARS AND NINETY-NINE CENTS";
+            // Arrange
+            _provider = new SimpleWordConverterProvider(true, true, true);
+
+            // Act
+            string actual = _provider.Convert(input);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
         [Test]
         public void ConvertTests_WithNegativeInput_WillThrowException()
         {

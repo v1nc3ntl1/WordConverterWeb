@@ -13,6 +13,7 @@ namespace WordConverterLibrary
         private readonly bool _includeCurrency;
         private readonly bool _includeAnd;
         private readonly bool _upperCase;
+        private readonly decimal _max = 999999999999999999.99m;
 
         /// <summary>
         /// Default Constructor
@@ -41,11 +42,16 @@ namespace WordConverterLibrary
         {
             if (input < 0)
             {
-                throw new NotSupportedException("Negative number not supported. Use positive number instead");
+                throw new RangeException("Negative number not supported. Use positive number instead.");
+            }
+
+            if (input > _max)
+            {
+                throw new MaxRangeException($"Cannot support number more than {_max}.");
             }
 
             var currency = _includeCurrency ? " dollars" : "";
-            var number = int.Parse(Math.Floor(input).ToString("F0"));
+            var number = System.Convert.ToUInt64(Math.Floor(input));
             var rawFraction = input - number;
 
             if (rawFraction == 0)
@@ -56,7 +62,7 @@ namespace WordConverterLibrary
             var fraction = int.Parse(rawFraction.ToString("F2").Substring(2));
 
             var cent = _includeCurrency ? " cents" : "";
-            string output = $"{ConvertToEnglishWord(number)}{currency} and {ConvertToEnglishWord(fraction)}{cent}";
+            string output = $"{ConvertToEnglishWord(number)}{currency} and {Convert_nn(fraction)}{cent}";
 
             return FormatOutput(output);
         }
@@ -68,29 +74,29 @@ namespace WordConverterLibrary
             return _upperCase ? input.ToUpper() : input;
         }
 
-        private string ConvertToEnglishWord(long input)
+        private string ConvertToEnglishWord(ulong input)
         {
             if (input < 100)
             {
-                return Convert_nn(input);
+                return Convert_nn((long)input);
             }
 
             if (input < 1000)
             {
-                return Convert_nnn(input);
+                return Convert_nnn((long)input);
             }
-
+            
             for (var counter = 0; counter < _denom.Length; counter++)
             {
                 long didx = counter - 1;
-                var dval = long.Parse(Math.Pow(1000, counter).ToString());
+                var dval = System.Convert.ToUInt64(Math.Pow(1000, counter));
                 if (dval > input)
                 {
-                    long mod = int.Parse(Math.Pow(1000, didx).ToString());
+                    ulong mod = System.Convert.ToUInt64(Math.Pow(1000, didx));
                     var l = input / mod;
                     var r = input - (l * mod);
 
-                    string ret = Convert_nnn(l) + " " + _denom[didx];
+                    string ret = Convert_nnn((long)l) + " " + _denom[didx];
 
                     if (r > 0)
                     {

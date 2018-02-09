@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IWordConverterProvider.cs" />
+    <Compile Include="MaxRangeException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimpleWordConverterProvider.cs" />
     <Compile Include="ThirdPartyConverterProvider.cs" />

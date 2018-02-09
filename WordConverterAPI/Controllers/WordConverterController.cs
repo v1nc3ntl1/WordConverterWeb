@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Web.Http;
 using System.Web.Http.Cors;
 using WordConverterAPI.Models;
 using WordConverterLibrary;
@@ -39,7 +40,18 @@ namespace WordConverterAPI.Controllers
                 return BadRequest("Invalid number");
             }
 
-            return Ok(new WordModel() { Number = number, Word = this._provider.Convert(number) });
+            WordModel model;
+            
+            try
+            {
+                model = new WordModel() {Number = number, Word = this._provider.Convert(number)};
+            }
+            catch (RangeException e)
+            {
+                return BadRequest(e.Message);
+            }
+
+            return Ok(model);
         }
     }
 }
