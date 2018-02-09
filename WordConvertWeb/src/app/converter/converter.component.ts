@@ -29,6 +29,9 @@ export class ConverterComponent implements OnInit {
 
   convertNumber() : void {
     this.wordConverterService.convertNumber(this.profile)
-      .subscribe(outprofile => this.outProfile = outprofile);
+      .subscribe(outprofile => {
+        this.outProfile = outprofile;
+        this.outProfile.name = this.profile.name;
+      });
   }
 }

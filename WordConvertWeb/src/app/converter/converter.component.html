@@ -1,5 +1,5 @@
 <div>
-  <table>
+  <table class="table">
     <tr>
       <td>
         <label>name:
@@ -18,8 +18,9 @@
     </tr>
   </table>
   <div>
-    <button (click)="onShow()">Show</button>
+    <button class="btn btn-primary btn-lg" role="button" aria-disabled="true" (click)="onShow()">Show</button>
   </div>
+  <br style="padding-bottom: 10px" />
   <pm-profile-output [profile]="outProfile"></pm-profile-output>
   <pm-messages></pm-messages>
 </div>

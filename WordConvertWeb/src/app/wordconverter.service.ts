@@ -16,8 +16,7 @@ export class WordconverterService {
 
   convertNumber(profile : Profile) : Observable<Profile> {
     const url = `${this.converterUrl}/${profile.no}`;
-    profile.noString = 'call to service :' + profile.noString;
-
+    
     return this.http.get<Profile>(url)
       .pipe(
         tap(profile => this.log(`fetched number`)),
