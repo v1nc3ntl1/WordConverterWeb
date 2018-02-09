@@ -5,7 +5,7 @@ using WordConverterLibrary;
 
 namespace WordConverterAPI.Controllers
 {
-    [EnableCors("http://localhost:59645", "*", "*")]
+    [EnableCors("http://localhost:4200", "*", "*")]
     public class WordConverterController : ApiController
     {
         private readonly IWordConverterProvider _provider;

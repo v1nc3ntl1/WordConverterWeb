@@ -1,0 +1,25 @@
+<div>
+  <table>
+    <tr>
+      <td>
+        <label>name:
+        </label>
+      </td>
+      <td><input [(ngModel)]="profile.name" placeholder="name"></td>
+    </tr>
+    <tr>
+      <td>
+          <label>no:
+            </label>
+      </td>
+      <td>
+          <input [(ngModel)]="profile.no" placeholder="no">
+      </td>
+    </tr>
+  </table>
+  <div>
+    <button (click)="onShow()">Show</button>
+  </div>
+  <pm-profile-output [profile]="outProfile"></pm-profile-output>
+  <pm-messages></pm-messages>
+</div>
