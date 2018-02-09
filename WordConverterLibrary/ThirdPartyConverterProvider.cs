@@ -2,7 +2,7 @@
 
 namespace WordConverterLibrary
 {
-    public class WordConverterProvider : IWordConverterProvider
+    public class ThirdPartyConverterProvider : IWordConverterProvider
     {
         public string Convert(int input)
         {

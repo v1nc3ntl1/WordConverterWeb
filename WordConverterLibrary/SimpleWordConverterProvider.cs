@@ -51,33 +51,35 @@ namespace WordConverterLibrary
             return _upperCase ? input.ToUpper() : input;
         }
 
-        private string ConvertToEnglishWord(long val)
+        private string ConvertToEnglishWord(long input)
         {
-            if (val < 100)
+            if (input < 100)
             {
-                return Convert_nn(val);
+                return Convert_nn(input);
             }
 
-            if (val < 1000)
+            if (input < 1000)
             {
-                return Convert_nnn(val);
+                return Convert_nnn(input);
             }
 
-            for (var v = 0; v < _denom.Length; v++)
+            for (var counter = 0; counter < _denom.Length; counter++)
             {
-                long didx = v - 1;
-                long dval = long.Parse(Math.Pow(1000, v).ToString());
-                if (dval > val)
+                long didx = counter - 1;
+                var dval = long.Parse(Math.Pow(1000, counter).ToString());
+                if (dval > input)
                 {
                     long mod = int.Parse(Math.Pow(1000, didx).ToString());
-                    long l = val / mod;
-                    long r = val - (l * mod);
+                    var l = input / mod;
+                    var r = input - (l * mod);
 
                     string ret = Convert_nnn(l) + " " + _denom[didx];
+
                     if (r > 0)
                     {
                         ret = ret + ", " + ConvertToEnglishWord(r);
                     }
+
                     return ret;
                 }
             }
@@ -85,18 +87,18 @@ namespace WordConverterLibrary
             throw new ArithmeticException("Something is wrong");
         }
 
-        private string Convert_nn(long val)
+        private string Convert_nn(long input)
         {
-            if (val < 20)
-                return _numberWords[val];
+            if (input < 20)
+                return _numberWords[input];
             for (long v = 0; v < _tiesWords.Length; v++)
             {
                 string dcap = _tiesWords[v];
                 long dval = 20 + 10 * v;
-                if (dval + 10 > val)
+                if (dval + 10 > input)
                 {
-                    if ((val % 10) != 0)
-                        return dcap + "-" + _numberWords[val % 10];
+                    if ((input % 10) != 0)
+                        return dcap + "-" + _numberWords[input % 10];
                     return dcap;
                 }
             }
@@ -104,21 +106,22 @@ namespace WordConverterLibrary
             throw new ArithmeticException("Something is wrong");
         }
 
-        private string Convert_nnn(long val)
+        private string Convert_nnn(long input)
         {
             var word = "";
-            var rem = val / 100;
-            var mod = val % 100;
+            var rem = input / 100;
+            var mod = input % 100;
             if (rem > 0)
             {
                 word = _numberWords[rem] + " hundred";
-                if (_includeAnd)
-                {
-                    word += " and";
-                }
 
                 if (mod > 0)
                 {
+                    if (_includeAnd)
+                    {
+                        word += " and";
+                    }
+
                     word = word + " ";
                 }
             }
@@ -129,21 +132,6 @@ namespace WordConverterLibrary
             }
 
             return word;
-        }
-
-        private string ConvertToWord(decimal input)
-        {
-            int number = int.Parse(input.ToString("F0"));
-            var rawFraction = (input - number);
-
-            if (rawFraction == 0)
-            {
-                return this.Convert(number);
-            }
-
-            int fraction = int.Parse(rawFraction.ToString("F2").Substring(2));
-
-            return $"{this.Convert(number)} and {this.Convert(fraction)} cents";
         }
 
         #endregion

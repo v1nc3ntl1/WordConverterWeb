@@ -11,8 +11,12 @@ namespace WordConverterLibrary.Tests
         [TestCase(43, "forty-three")]
         [TestCase(123, "one hundred twenty-three")]
         [TestCase(83123, "eighty-three thousand, one hundred twenty-three")]
+        [TestCase(83100, "eighty-three thousand, one hundred")]
         [TestCase(12345678, "twelve million, three hundred forty-five thousand, six hundred seventy-eight")]
+        [TestCase(3000000, "three million")]
         [TestCase(1234567890, "one billion, two hundred thirty-four million, five hundred sixty-seven thousand, eight hundred ninety")]
+        [TestCase(60000000, "sixty million")]
+        [TestCase(88000900, "eighty-eight million, nine hundred")]
         public void ConvertTests(decimal input, string expected)
         {
             // Arrange
@@ -29,8 +33,12 @@ namespace WordConverterLibrary.Tests
         [TestCase(43, "FORTY-THREE DOLLARS")]
         [TestCase(123, "ONE HUNDRED AND TWENTY-THREE DOLLARS")]
         [TestCase(83123, "EIGHTY-THREE THOUSAND, ONE HUNDRED AND TWENTY-THREE DOLLARS")]
+        [TestCase(83100, "EIGHTY-THREE THOUSAND, ONE HUNDRED DOLLARS")]
         [TestCase(12345678, "TWELVE MILLION, THREE HUNDRED AND FORTY-FIVE THOUSAND, SIX HUNDRED AND SEVENTY-EIGHT DOLLARS")]
+        [TestCase(3000000, "THREE MILLION DOLLARS")]
         [TestCase(1234567890, "ONE BILLION, TWO HUNDRED AND THIRTY-FOUR MILLION, FIVE HUNDRED AND SIXTY-SEVEN THOUSAND, EIGHT HUNDRED AND NINETY DOLLARS")]
+        [TestCase(60000000, "SIXTY MILLION DOLLARS")]
+        [TestCase(88000900, "EIGHTY-EIGHT MILLION, NINE HUNDRED DOLLARS")]
         public void ConvertTests_WithIncludeDollars_WillIncludeDollars(decimal input, string expected)
         {
             // Arrange
