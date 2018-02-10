@@ -23,3 +23,21 @@
 ## To exit or shut down
 1. Click Ctrl + C and type y to exit angular website.
 2. Stop Debugging from Visual Studio to exit Web Api.
+
+## Technologies used
+1. ASP.NET Web API
+2. C# .NET
+3. Angular & Bootstrap - Front End
+4. Unity Container as IOC Container
+5. Nuget packages
+6. NUnit - Test runner
+7. NSubstitute - Mocking & Faking
+
+## Concepts used
+1. Dependency Injection - through WebApiHelper & used in WebApiConfig
+2. SOLID Principles 
+3. TDD
+4. Decorator Design Patterns 
+- through IpFilteringHandler. Served like a pipeline that can chain multiple IRequestFilter to allow or block Api Controller action. 
+  It starts from IpWhiteListFilter and can chain any other implementation of IRequestFilter such as Development machine allow Filter and etc.
+
