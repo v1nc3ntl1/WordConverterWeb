@@ -119,7 +119,7 @@ namespace WordConverterLibrary.Tests
             decimal input = -20.00m;
 
             // Act
-            Assert.Throws<NotSupportedException>(() => { _provider.Convert(input); });
+            Assert.Throws<RangeException>(() => { _provider.Convert(input); });
         }
     }
 }

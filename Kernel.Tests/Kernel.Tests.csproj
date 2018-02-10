@@ -87,6 +87,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IpFilterHandlerTests.cs" />
+    <Compile Include="IpHelperTests.cs" />
+    <Compile Include="IpWhiteListFilterTests.cs" />
     <Compile Include="UnityResolverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebApiHelperTests.cs" />
