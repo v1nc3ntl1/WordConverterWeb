@@ -1,17 +1,17 @@
 ﻿using System.Web.Http;
 using System.Web.Http.Results;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
+using NUnit.Framework;
 using WordConverterAPI.Controllers;
 using WordConverterAPI.Models;
 using WordConverterLibrary;
 
 namespace WordConverterAPI.Tests.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class WordConverterTests
     {
-        [TestMethod]
+        [Test]
         public void Get_WithValidValue_WillReturnOk()
         {
             // Arrange
@@ -32,7 +32,7 @@ namespace WordConverterAPI.Tests.Controllers
             Assert.AreEqual(12m, okResult.Content.Number);
         }
 
-        [TestMethod]
+        [Test]
         public void Get_WithInValidValue_WillReturnBadRequest()
         {
             // Arrange

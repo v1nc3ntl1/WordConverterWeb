@@ -1,14 +1,13 @@
 ﻿using System.Web.Mvc;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WordConverterAPI;
+using NUnit.Framework;
 using WordConverterAPI.Controllers;
 
 namespace WordConverterAPI.Tests.Controllers
 {
-    [TestClass]
+    [TestFixture]
     public class HomeControllerTest
     {
-        [TestMethod]
+        [Test]
         public void Index()
         {
             // Arrange
