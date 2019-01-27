@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <metadata>
+        <!-- Required elements-->
+        <id>WordConverterWeb</id>
+        <version>1.0.0</version>
+        <description>Word Converte rWeb</description>
+        <authors>Vincent Li</authors>
+
+        <!-- Optional elements -->
+        <!-- ... -->
+    </metadata>
+    <files>
+		<file src=".\WordConverterWeb\WordConverterAPI\**\*.*" exclude="**\*.csproj; **\*.csproj.user; **\*.cs" target="lib\net462" />
+	</files>
+</package>
