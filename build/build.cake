@@ -3,13 +3,14 @@
 //////////////////////////////////////////////////////////////////////
 
 // Example
-// PS C:\projects\LoadTesting> .\build\build.ps1 -Verbosity:Normal -Target:Create-Packages -ScriptArgs:@('--MsBuildConfiguration=Release','--EnablePrecompilation=true','--MsBuildVerbosity=normal','-PackageVersion="1-integration"')
+// PS C:\projects\WordConverterWeb> .\build\build.ps1 -Verbosity:Normal -Target:Create-Packages -ScriptArgs:@('--MsBuildConfiguration=Release','--EnablePrecompilation=true','--MsBuildVerbosity=normal','-PackageVersion="1-integration"')
+// PS C:\projects\WordConverterWeb> .\build\build.ps1 -Verbosity:Normal -Target:Default -ScriptArgs:@('--MsBuildConfiguration=Release','--EnablePrecompilation=true','--MsBuildVerbosity=normal','-PackageVersion="1-integration"')
 
 //////////////////////////////////////////////////////////////////////
 // ARGUMENTS
 //////////////////////////////////////////////////////////////////////
 
-var target = Argument("target", "Default");
+var target = Argument("target", "Create-Packages");
 var msBuildConfiguration = Argument("msBuildConfiguration", "Debug");
 var msBuildVerbosity = Argument("msBuildVerbosity", Verbosity.Minimal);
 var packageVersion = Argument("packageVersion", "");
