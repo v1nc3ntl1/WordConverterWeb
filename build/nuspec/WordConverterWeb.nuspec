@@ -11,6 +11,6 @@
         <!-- ... -->
     </metadata>
     <files>
-		<file src="**\WordConverterWeb\WordConverterAPI\**\*.*" exclude="**\*.cs;**\*.designer.cs;**\*.csproj;**\*.pdb;**\*.user;**\*.vspscc" target="content" />
+		<file src="..\WordConverterAPI\**\*.*" exclude="**\*.cs;**\*.designer.cs;**\*.csproj;**\*.pdb;**\*.user;**\*.vspscc" target="wwwroot" />
 	</files>
 </package>
