@@ -4,13 +4,13 @@
         <!-- Required elements-->
         <id>WordConverterWeb</id>
         <version>1.0.0</version>
-        <description>Word Converte rWeb</description>
+        <description>Word Converter Web</description>
         <authors>Vincent Li</authors>
 
         <!-- Optional elements -->
         <!-- ... -->
     </metadata>
     <files>
-		<file src=".\WordConverterWeb\WordConverterAPI\**\*.*" exclude="**\*.csproj; **\*.csproj.user; **\*.cs" target="lib\net462" />
+		<file src="WordConverterWeb\WordConverterAPI\**\*.*" exclude="**\*.cs;**\*.designer.cs;**\*.csproj;**\*.pdb;**\*.user;**\*.vspscc" target="content" />
 	</files>
 </package>
