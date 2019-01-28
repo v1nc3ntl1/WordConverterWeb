@@ -1,15 +1,13 @@
 
 [CmdletBinding()]
 Param(
+    [string]$PackagesVersion = "1-integration",
+    [string]$Target = "Create-Packages",
     [string]$Script = "build.cake",
-    [string]$Target = "Default",
     [ValidateSet("Release", "Debug")]
     [string]$Configuration = "Release",
     [ValidateSet("Quiet", "Minimal", "Normal", "Verbose", "Diagnostic")]
-    [string]$Verbosity = "Verbose",
-    [switch]$SkipToolPackageRestore,
-    [Parameter(Position=0,Mandatory=$false,ValueFromRemainingArguments=$true)]
-    [string[]]$ScriptArgs
+    [string]$Verbosity = "Verbose"
 )
 
 $sourceNugetExe = "https://dist.nuget.org/win-x86-commandline/latest/nuget.exe"
@@ -35,6 +33,8 @@ Write-Host "$Script"
 # Start Cake
 Write-Host "Running build script..."
 Write-Host "Cake exe: $CAKE_EXE"
+$ScriptArgs = "--MsBuildConfiguration=Release --EnablePrecompilation=true --MsBuildVerbosity=normal -PackageVersion=`"$PackagesVersion`""
+Write-Host $ScriptArgs
 Invoke-Expression "& `"$CAKE_EXE`" `"$Script`" -target=`"$Target`" -configuration=`"$Configuration`" -verbosity=`"$Verbosity`" $ScriptArgs"
 exit $LASTEXITCODE
 
